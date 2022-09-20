@@ -1,13 +1,13 @@
 package com.softwaremill.tapir.scalaxb.example
 
-import sttp.tapir.*
-
+import sttp.tapir.{PublicEndpoint, endpoint, query, stringBody}
 import cats.effect.IO
 import sttp.tapir.server.ServerEndpoint
 import sttp.tapir.swagger.bundle.SwaggerInterpreter
 
-object Endpoints:
+object Endpoints {
   case class User(name: String) extends AnyVal
+
   val helloEndpoint: PublicEndpoint[User, Unit, String, Any] = endpoint.get
     .in("hello")
     .in(query[User]("name"))
@@ -20,3 +20,5 @@ object Endpoints:
     .fromServerEndpoints[IO](apiEndpoints, "tapir-scalaxb-example", "1.0.0")
 
   val all: List[ServerEndpoint[Any, IO]] = apiEndpoints ++ docEndpoints
+}
+

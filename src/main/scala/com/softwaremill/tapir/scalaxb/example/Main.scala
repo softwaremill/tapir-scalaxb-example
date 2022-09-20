@@ -7,10 +7,8 @@ import sttp.tapir.server.http4s.Http4sServerInterpreter
 
 import scala.io.StdIn
 
-object Main extends IOApp:
-
-  override def run(args: List[String]): IO[ExitCode] =
-
+object Main extends IOApp {
+  override def run(args: List[String]): IO[ExitCode] = {
     val routes = Http4sServerInterpreter[IO]().toRoutes(Endpoints.all)
 
     val port = sys.env.get("http.port").map(_.toInt).getOrElse(8080)
@@ -26,3 +24,5 @@ object Main extends IOApp:
         }
       }
       .as(ExitCode.Success)
+  }
+}
