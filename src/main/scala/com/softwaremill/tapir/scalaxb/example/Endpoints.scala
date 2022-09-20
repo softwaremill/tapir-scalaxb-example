@@ -1,6 +1,6 @@
 package com.softwaremill.tapir.scalaxb.example
 
-import sttp.tapir.{PublicEndpoint, Schema, endpoint, query, stringBody}
+import sttp.tapir.{PublicEndpoint, Schema, endpoint}
 import cats.effect.IO
 import generated.Outer
 import sttp.tapir.docs.apispec.DocsExtensionAttribute.RichSchema
