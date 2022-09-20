@@ -14,20 +14,31 @@ import sttp.tapir.integ.cats.CatsMonadError
 
 class EndpointsSpec extends AnyFlatSpec with Matchers with EitherValues {
 
-  it should "return hello message" in {
+  it should "return 'reversed' xml message" in {
     // given
     val backendStub = TapirStubInterpreter(SttpBackendStub(new CatsMonadError[IO]()))
-      .whenServerEndpoint(helloServerEndpoint)
+      .whenServerEndpoint(xmlServerEndpoint)
       .thenRunLogic()
       .backend()
 
     // when
+    val number = 42
+    val boolean = true
+    val innerText = "horses"
+    val outerText = "cats"
     val response = basicRequest
-      .get(uri"http://test.com/hello?name=adam")
+      .post(uri"http://test.com/xml")
+      .body(
+        s"""<outer xmlns="http://www.example.com/innerouter"><foo><a>$number</a><b>$boolean</b><c>$innerText</c></foo><bar>$outerText</bar></outer>"""
+      )
       .send(backendStub)
 
     // then
-    response.map(_.body.value shouldBe "Hello adam").unwrap
+    response
+      .map(
+        _.body.value shouldBe s"""<outer xmlns="http://www.example.com/innerouter" xmlns:innerouter="http://www.example.com/innerouter" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><foo><a>${number * -1}</a><b>${!boolean}</b><c>${innerText.reverse}</c></foo><bar>${outerText.reverse}</bar></outer>"""
+      )
+      .unwrap
   }
 
   implicit class Unwrapper[T](t: IO[T]) {
