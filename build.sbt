@@ -12,7 +12,7 @@ lazy val rootProject = (project in file("."))
         "com.softwaremill.sttp.tapir" %% "tapir-http4s-server" % tapirVersion,
         "org.http4s" %% "http4s-blaze-server" % "0.23.12",
         "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-bundle" % tapirVersion,
-        "com.softwaremill.sttp.tapir" %% "tapir-json-circe" % "1.1.0",
+        "com.softwaremill.sttp.tapir" %% "tapir-json-circe" % "1.1.0", // needed to enrich schema used by swagger
         "ch.qos.logback" % "logback-classic" % "1.4.1",
         "org.dispatchhttp" %% "dispatch-core" % "1.2.0",
         "javax.xml.bind" % "jaxb-api" % "2.3.1",

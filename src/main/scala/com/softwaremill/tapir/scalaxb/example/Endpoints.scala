@@ -20,7 +20,7 @@ object Endpoints {
   implicit val outerSchemaWithXmlNamspace: Schema[Outer] = implicitly[Derived[Schema[Outer]]].value
     .docsExtension("xml", XmlNamespace("http://www.example.com/innerouter"))
 
-  import xml._
+  import com.softwaremill.tapir.scalaxb.example.xml._
   // `label` is needed by scalaxb code to properly encode the top node of the xml
   implicit val label: XmlElementLabel = XmlElementLabel("outer")
 
