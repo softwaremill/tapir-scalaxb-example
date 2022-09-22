@@ -27,6 +27,9 @@
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
+# Code style files
+.idea/codeStyles/*
+
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
@@ -111,7 +114,8 @@ fabric.properties
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*

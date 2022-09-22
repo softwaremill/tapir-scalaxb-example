@@ -1,0 +1,20 @@
+<xs:schema targetNamespace="http://www.example.com/innerouter"
+           elementFormDefault="qualified"
+           xmlns="http://www.example.com/innerouter"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:innerouter="http://www.example.com/innerouter">
+    <xs:complexType name="Inner">
+        <xs:sequence>
+            <xs:element name="a"   type="xs:int"/>
+            <xs:element name="b"   type="xs:boolean"/>
+            <xs:element name="c"   type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Outer">
+        <xs:sequence>
+            <xs:element name="foo"   type="Inner"/>
+            <xs:element name="bar"   type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
