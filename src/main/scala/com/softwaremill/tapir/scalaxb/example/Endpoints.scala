@@ -17,10 +17,12 @@ object Endpoints {
   // attribute (look at "Prefixes and Namespaces" section at https://swagger.io/docs/specification/data-models/representing-xml/),
   // that is needed by scalaxb code to property decode given xml
   case class XmlNamespace(namespace: String)
+
   implicit val outerSchemaWithXmlNamspace: Schema[Outer] = implicitly[Derived[Schema[Outer]]].value
     .docsExtension("xml", XmlNamespace("http://www.example.com/innerouter"))
 
   import com.softwaremill.tapir.scalaxb.example.xml._
+
   // `label` is needed by scalaxb code to properly encode the top node of the xml
   implicit val label: XmlElementLabel = XmlElementLabel("outer")
 
