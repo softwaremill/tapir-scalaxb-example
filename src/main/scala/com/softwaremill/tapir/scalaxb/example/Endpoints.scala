@@ -18,7 +18,7 @@ object Endpoints {
   // that is needed by scalaxb code to property decode given xml
   case class XmlNamespace(namespace: String)
 
-  implicit val outerSchemaWithXmlNamspace: Schema[Outer] = implicitly[Derived[Schema[Outer]]].value
+  implicit val outerSchemaWithXmlNamespace: Schema[Outer] = implicitly[Derived[Schema[Outer]]].value
     .docsExtension("xml", XmlNamespace("http://www.example.com/innerouter"))
 
   import com.softwaremill.tapir.scalaxb.example.xml._
